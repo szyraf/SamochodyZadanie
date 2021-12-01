@@ -1,0 +1,9 @@
+td, th {
+    border: 1px solid lightgrey;
+    width: 130px;
+}
+
+.select {
+    width: 120px;
+}
+

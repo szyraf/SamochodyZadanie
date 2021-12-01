@@ -1,0 +1,95 @@
+<h2>02: zapis / odczyt danych w bazie NEDB</h2>
+
+<h3>Dane pojazdu:</h3>
+
+<form action="/handle" method="get">
+    <table>
+        <tr>
+            <td><label for="a">Ubezpieczony:</label></td>
+            <td><input type="checkbox" name="a" id="a"></td>
+        </tr>
+        <tr>
+            <td><label for="b">Benzyna:</label></td>
+            <td><input type="checkbox" name="b" id="b"></td>
+        </tr>
+        <tr>
+            <td><label for="c">Uszkodzony:</label></td>
+            <td><input type="checkbox" name="c" id="c"></td>
+        </tr>
+        <tr>
+            <td><label for="d">Napęd 4x4:</label></td>
+            <td><input type="checkbox" name="d" id="d"></td>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" value="Dodaj">
+</form>
+
+
+<h3>Wszystkie pojazdy:</h3>
+
+<table>
+    <tr>
+        <td></td>
+        <th>Ubezpieczony</th>
+        <th>Benzyna</th>
+        <th>Ubezpieczony</th>
+        <th>Napęd 4x4</th>
+        <td></td>
+        <td></td>
+    </tr>
+    {{#each baza}}
+        <tr>
+
+            {{#if edit}}
+
+                <td>{{@index}}<form action="/update" method="get" id="form1"></form></td>
+                
+    
+
+
+                {{{selectTAKNIE a}}}
+                {{{selectTAKNIE b}}}
+                {{{selectTAKNIE c}}}
+                {{{selectTAKNIE d}}}
+                
+                <td>
+                    <input form="form1" type="submit" value="Update" name={{_id}} onclick="return confirm('Update?')">
+                </td>
+
+                
+                <td>
+                    <form action="/" method="get">
+                        <input type="submit" value="Cancel" name={{_id}}>
+                    </form>
+                </td>
+            
+            {{else}}
+
+                <td>{{@index}}</td>
+
+                <td>{{a}}</td>
+                <td>{{b}}</td>
+                <td>{{c}}</td>
+                <td>{{d}}</td>
+
+
+                <td>
+                    <form action="/delete" method="get">
+                        <input type="submit" value="Delete" name={{_id}} onclick="return confirm('Delete?')">
+                    </form>
+                </td>
+                <td>
+                    <form action="/edit" method="get">
+                        <input type="submit" value="Edit" name={{_id}}>
+                    </form>
+                </td>
+
+            {{/if}}
+
+            
+        </tr>
+    {{/each}}
+</table>
+
+
